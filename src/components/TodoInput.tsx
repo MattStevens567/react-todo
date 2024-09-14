@@ -1,19 +1,21 @@
-import { useState } from 'react'
+import React from 'react'
+import { SetState } from '../shared/utils'
 
 interface TodoInputProps {
     handleAddTodos: (todoValue: string) => void
+    todoValue: string
+    setTodoValue: SetState<string>
 }
 
 export default function TodoInput(props: TodoInputProps) {
-    const { handleAddTodos } = props
-    const [todoValue, setTodoValue] = useState('')
+    const { handleAddTodos, todoValue, setTodoValue } = props
 
     return (
         <header>
             <input
                 value={todoValue}
-                onChange={(e) => {
-                    console.log(e)
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    // console.log(e)
                     setTodoValue(e.target.value)
                 }}
                 placeholder="Enter todo..."
